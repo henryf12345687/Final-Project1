@@ -1,1 +1,75 @@
+START PROGRAM
 
+CONNECT to student_database.db
+
+IF database does not exist THEN
+    CREATE table Students with fields:
+        Student_ID (Primary Key, Integer)
+        First_Name (Text)
+        Last_Name (Text)
+        Major (Text)
+        GPA (Real)
+        Credits_Earned (Integer)
+        Email (Text)
+        Enrollment_Status (Text)
+END IF
+
+REPEAT
+    DISPLAY menu:
+        1. View all students
+        2. Add a new student
+        3. Edit an existing student
+        4. Delete a student
+        5. Exit program
+
+    PROMPT user for menu choice
+
+    IF choice == 1 THEN
+        RETRIEVE all student records from database
+        DISPLAY each record in a formatted table
+    END IF
+
+    IF choice == 2 THEN
+        PROMPT user for:
+            First_Name
+            Last_Name
+            Major
+            GPA
+            Credits_Earned
+            Email
+            Enrollment_Status
+
+        INSERT new record into Students table
+        CONFIRM student was added
+    END IF
+
+    IF choice == 3 THEN
+        PROMPT user for Student_ID to edit
+        RETRIEVE selected student record
+
+        DISPLAY current values for each field
+
+        PROMPT user to select which field to change:
+            1. First_Name
+            2. Last_Name
+            3. Major
+            4. GPA
+            5. Credits_Earned
+            6. Email
+            7. Enrollment_Status
+
+        PROMPT user for new value
+        UPDATE selected field in database
+        CONFIRM record was updated
+    END IF
+
+    IF choice == 4 THEN
+        PROMPT user for Student_ID to delete
+        DELETE student record from database
+        CONFIRM deletion
+    END IF
+
+UNTIL choice == 5
+
+CLOSE database connection
+END PROGRAM
