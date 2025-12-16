@@ -46,7 +46,7 @@ def create_table(cur):
     GPA Real,
     Credits_Earned Integer,
     Email Text,
-    Enrollment_Status Text""")
+    Enrollment_Status Text)""")
 
 
 
